@@ -32,7 +32,6 @@ const productSlice = createSlice({
       state.loaded = false;
     })
     builder.addCase(fetchProductsThunk.fulfilled, (state, action) => {
-      console.log('action.payload', action.payload);
       state.loading = false;
       state.loaded = true;
       state.products = action.payload;
