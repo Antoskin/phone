@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from "@/lib/api";
 import { IProduct } from "@/lib/types";
-import { IApiResponse } from "@/lib/api";
 
 interface IProductState {
   products: IProduct[];
@@ -17,10 +16,16 @@ const initialState: IProductState = {
   error: null
 }
 
-export const fetchProductsThunk = createAsyncThunk("product/fetchProducts", async () => {
-  const response = await fetchProducts();
-  return response
-})
+export const fetchProductsThunk = createAsyncThunk(
+  "product/fetchProducts", 
+  async (_, { rejectWithValue }) => {
+    const response = await fetchProducts();
+    if (response.error) {
+      return rejectWithValue(response.error);
+    }
+    return response;
+  }
+)
 
 const productSlice = createSlice({
   name: "product",
@@ -34,10 +39,10 @@ const productSlice = createSlice({
     builder.addCase(fetchProductsThunk.fulfilled, (state, action) => {
       state.loading = false;
       state.loaded = true;
-      state.products = action.payload;
+      state.products = action.payload.data;
     })
     builder.addCase(fetchProductsThunk.rejected, (state, action) => {
-      state.error = action.error.message || 'Failed to load countries';
+      state.error = action.payload as string || 'Failed to load products 3';
       state.loading = false;
       state.loaded = false;
     })

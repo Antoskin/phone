@@ -3,23 +3,31 @@ import { API_URL } from "./const";
 
 interface IApiResponse<T> {
   data: T;
-  status: number;
-  error: string;
+  error?: string | null;
 }
 
 const fetchProducts = async (): Promise<IApiResponse<IProduct[]>> => {
   try {
     const response: Response = await fetch(API_URL);
-    if (response.status !== 200) {
-      throw new Error("Failed to fetch products");
+    if (!response.ok) {
+      return {
+        data: [],
+        error: "Failed to fetch products 1"
+      };
     }
-
-    const data: IApiResponse<IProduct[]> = await response.json();
-      
-    return data;
+    
+    const data: IProduct[] = await response.json();
+  
+    return {
+      data,
+      error: null
+    }
   } catch (error) {
     console.error(error);
-    throw error;
+    return {
+      data: [],
+      error: "Failed to fetch products 2"
+    };
   }
 }
 
