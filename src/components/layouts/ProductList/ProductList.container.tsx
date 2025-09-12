@@ -1,4 +1,3 @@
-import React from 'react'
 import { fetchProductsServer } from '@/lib/api';
 import ProductList from './ProductListClient.container';
 import { IApiResponse } from '@/lib/api';

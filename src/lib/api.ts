@@ -6,30 +6,30 @@ export interface IApiResponse<T> {
   error?: string | null;
 }
 
-const fetchProducts = async (): Promise<IApiResponse<IProduct[]>> => {
-  try {
-    const response: Response = await fetch(API_URL);
-    if (!response.ok) {
-      return {
-        data: [],
-        error: "Failed to fetch products 1"
-      };
-    }
+// const fetchProducts = async (): Promise<IApiResponse<IProduct[]>> => {
+//   try {
+//     const response: Response = await fetch(API_URL);
+//     if (!response.ok) {
+//       return {
+//         data: [],
+//         error: "Failed to fetch products 1"
+//       };
+//     }
     
-    const data: IProduct[] = await response.json();
+//     const data: IProduct[] = await response.json();
   
-    return {
-      data,
-      error: null
-    }
-  } catch (error) {
-    console.error(error);
-    return {
-      data: [],
-      error: "Failed to fetch products 2"
-    };
-  }
-}
+//     return {
+//       data,
+//       error: null
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       data: [],
+//       error: "Failed to fetch products 2"
+//     };
+//   }
+// }
 
 // Server-side compatible version for Next.js server components
 const fetchProductsServer = async (): Promise<IApiResponse<IProduct[]>> => {
@@ -61,6 +61,5 @@ const fetchProductsServer = async (): Promise<IApiResponse<IProduct[]>> => {
   }
 }
 
-export { fetchProducts, fetchProductsServer };
-
-export type { IApiResponse };
+// fetchProducts
+export { fetchProductsServer };

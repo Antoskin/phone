@@ -1,6 +1,5 @@
 "use client"
 
-import React from 'react'
 import { IProduct } from '@/lib/types'
 
 const ProductListClient = ({ products }: { products: IProduct[]}) => {
