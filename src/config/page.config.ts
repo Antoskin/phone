@@ -11,7 +11,7 @@ const PAGE: PageConfig = {
     NOT_FOUND: "/not-found",
     BUCKET: "/bucket",
     LIST: "/list",
-    SINGLE: (id: number) => `/single/${id}`,
+    SINGLE: (id: number) => `/list/${id}`,
 }
 
 export { PAGE };

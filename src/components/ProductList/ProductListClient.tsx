@@ -1,12 +1,19 @@
-"use client"
-
 import { IProduct } from '@/lib/types'
 
-const ProductListClient = ({ products }: { products: IProduct[]}) => {
+interface IProductListClientProps {
+  products: IProduct[]
+  pathTo: (id: number) => void
+}
+
+const ProductListClient = ({ products, pathTo }: IProductListClientProps) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
       {products.map((product: IProduct) => (
-        <div key={product.id} className='border border-gray-300 rounded-md p-5 cursor-pointer hover:shadow-lg transition-shadow'>
+        <div 
+          key={product.id} 
+          className='border border-gray-300 rounded-md p-5 cursor-pointer hover:shadow-lg transition-shadow'
+          onClick={() => pathTo(product.id)}
+        >
           <div className='text-lg font-bold mb-2'>
             {product.title}
           </div>
