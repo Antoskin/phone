@@ -31,6 +31,36 @@ const fetchProducts = async (): Promise<IApiResponse<IProduct[]>> => {
   }
 }
 
-export { fetchProducts };
+// Server-side compatible version for Next.js server components
+const fetchProductsServer = async (): Promise<IApiResponse<IProduct[]>> => {
+  try {
+    const response: Response = await fetch(API_URL, {
+      cache: 'no-store', // Ensure fresh data on each request
+      // Alternative: cache: 'force-cache' for caching, or next: { revalidate: 60 } for ISR
+    });
+    
+    if (!response.ok) {
+      return {
+        data: [],
+        error: `Failed to fetch posts - Status: ${response.status} ${response.statusText}`
+      };
+    }
+    
+    const data: IProduct[] = await response.json();
+  
+    return {
+      data,
+      error: null
+    }
+  } catch (error) {
+    console.error('Fetch error:', error);
+    return {
+      data: [],
+      error: `Failed to fetch posts - Error: ${error instanceof Error ? error.message : 'Unknown error'}`
+    };
+  }
+}
+
+export { fetchProducts, fetchProductsServer };
 
 export type { IApiResponse };

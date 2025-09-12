@@ -1,1 +1,1 @@
-export const API_URL: string = 'https://api.restful-api.dev/objects';
+export const API_URL: string = 'https://jsonplaceholder.typicode.com/posts';

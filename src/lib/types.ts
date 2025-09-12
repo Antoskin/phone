@@ -1,9 +1,8 @@
 interface IProduct {
-  id: string;
-  name: string;
-  data: {
-    [key: string]: string | number;
-  } | null;
+  id: number;
+  userId: number;
+  title: string;
+  body: string;
 }
 
 export type { IProduct };

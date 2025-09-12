@@ -1,10 +1,10 @@
 import React from 'react'
-import ProdList from '@/components/layouts/ProductList'
+import ProductList from '@/components/layouts/ProductList'
 
-export default function List() {
+export default async function List() {
   return (
     <div>
-      <ProdList />
+      <ProductList />
     </div>
   )
 }
