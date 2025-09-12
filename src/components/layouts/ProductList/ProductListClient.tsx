@@ -1,8 +1,9 @@
+"use client"
+
 import React from 'react'
-import { IProduct } from '@/lib/types';
+import { IProduct } from '@/lib/types'
 
-export default function ProductList({ products }: { products: IProduct[] }) {
-
+const ProductListClient = ({ products }: { products: IProduct[]}) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
       {products.map((product: IProduct) => (
@@ -21,3 +22,5 @@ export default function ProductList({ products }: { products: IProduct[] }) {
     </div>
   )
 }
+
+export default ProductListClient

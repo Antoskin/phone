@@ -1,7 +1,7 @@
 import { IProduct } from "./types";
 import { API_URL } from "./const";
 
-interface IApiResponse<T> {
+export interface IApiResponse<T> {
   data: T;
   error?: string | null;
 }

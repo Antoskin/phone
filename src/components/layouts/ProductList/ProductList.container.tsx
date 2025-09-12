@@ -1,20 +1,14 @@
 import React from 'react'
 import { fetchProductsServer } from '@/lib/api';
-//import Loader from '../Loader';
-import Empty from '../Empty';
-import ProductList from './ProductList';
+import ProductList from './ProductListClient.container';
+import { IApiResponse } from '@/lib/api';
+import { IProduct } from '@/lib/types';
 
 const ProductListContainer = async () => {
-  const { data: products, error } = await fetchProductsServer()
-
-  if (error) {
-    return error;
-  }
-
-  if (products.length === 0) return <Empty />;
+  const { data, error }: IApiResponse<IProduct[]> = await fetchProductsServer()
 
   return (
-    <ProductList products={products} />
+    <ProductList products={data} error={error || null} />
   )
 }
 
