@@ -8,7 +8,7 @@ const Button = ({ type, children, onClick }: IButtonProps) => {
   return (
     <button 
       type={type} 
-      className='bg-blue-500 text-white rounded-md p-2 hover:bg-blue-600'
+      className='bg-violet-500 text-white rounded-md p-2 hover:bg-violet-600'
       onClick={onClick}
     >
       {children}

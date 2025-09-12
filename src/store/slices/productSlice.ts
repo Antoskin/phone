@@ -36,6 +36,7 @@ const productSlice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload;
       state.filteredProducts = action.payload;
+      state.loaded = true;
     },
     setError: (state, action) => {
       state.error = action.payload;

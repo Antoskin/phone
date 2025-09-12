@@ -6,19 +6,18 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import Loader from '@/components/ui/Loader';
 import { setProducts, setError } from '@/store/slices/productSlice'
 import { IProduct } from '@/lib/types'
-import Empty from '../Empty'
+import Empty from '../layouts/Empty'
 import { RootState } from '@/store'
 
 const ProductListClientContainer = ({ products, error }: { products: IProduct[], error: string | null }) => {
   const dispatch = useAppDispatch();
-  const { filteredProducts } = useAppSelector((state: RootState) => state.product)
+  const { filteredProducts, loaded } = useAppSelector((state: RootState) => state.product)
   const [isHydrated, setIsHydrated] = useState<boolean>(false)
   
   useEffect(() => {
-    
     if (error) {
       dispatch(setError(error))
-    } else if (products && products.length > 0) {
+    } else if (products && products.length > 0 && !loaded) {
       dispatch(setProducts(products))
     
     }
