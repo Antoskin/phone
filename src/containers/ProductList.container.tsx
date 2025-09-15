@@ -1,22 +1,19 @@
+import { ReactNode } from 'react';
 import { fetchProductsServer } from '@/lib/api';
-// import ProductList from '../components/ProductList/ProductListClient.container';
+import ClientDataLoader from '@/components/ClientDataLoader';
 import { IApiResponse } from '@/lib/api';
 import { IProduct } from '@/lib/types';
 
-const withProductList = async (WrappedComponent: React.ComponentType<any>) => {
-  const ProductList = async (props: any) => {
-    const { data, error }: IApiResponse<IProduct[]> = await fetchProductsServer()
+const ProductListContainer = async ({ children }: { children: React.ReactNode }) => {
+  const { data, error }: IApiResponse<IProduct[]> = await fetchProductsServer()
 
-    return (
-      <WrappedComponent 
-      products={data} 
-      error={error || null} 
-      {...props} 
-    />
-    )
-  }
-
-  return ProductList;
+  return (
+    <>
+    <ClientDataLoader products={data} error={error || null} />
+    {children}
+    </>
+    
+  )
 }
 
-export default withProductList
+export default ProductListContainer;

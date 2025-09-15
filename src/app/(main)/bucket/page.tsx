@@ -1,25 +1,18 @@
 'use client'
 
-import { useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa'
 import Empty from '@/components/layouts/Empty'
 import BucketList from '@/components/BucketList'
-import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import { initCardsFromLocalStorage } from '@/store/slices/bucketSlice'
+import { useAppSelector } from '@/store/hooks'
 import { IProduct } from '@/lib/types'
 import { PAGE } from '@/config/page.config'
-
+import Loader from '@/components/ui/Loader'
 
 export default function Bucket() {
-  const products: IProduct[] = useAppSelector((state) => state.product.products)
+  const { products, loading } = useAppSelector((state) => state.product)
   const bucket: number[] = useAppSelector((state) => state.bucket.cards)
-  
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(initCardsFromLocalStorage())
-  }, [dispatch])
 
   const bucketProducts: IProduct[] = useMemo(() => {
     return products.filter((product: IProduct) => (
@@ -27,13 +20,9 @@ export default function Bucket() {
     ))
   }, [products, bucket])
 
-  useEffect(() => {
-    console.log(bucket, 'bucket')
-  }, [bucket])
-
-  useEffect(() => {
-    console.log(products, 'products')
-  }, [products])
+  if (loading) {
+    return <Loader />
+  }
 
   if (bucketProducts.length === 0) {
     return <>

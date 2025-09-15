@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 //import { fetchProducts } from "@/lib/api";
 import { IProduct } from "@/lib/types";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 interface IProductState {
   products: IProduct[];
@@ -13,7 +14,7 @@ interface IProductState {
 const initialState: IProductState = {
   products: [],
   filteredProducts: [],
-  loading: false,
+  loading: true,
   loaded: false,
   error: null
 }
@@ -33,6 +34,9 @@ const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
     setProducts: (state, action) => {
       state.products = action.payload;
       state.filteredProducts = action.payload;
@@ -67,6 +71,6 @@ const productSlice = createSlice({
   // }
 })
 
-export const { setProducts, setError, filterProducts, resetFilter } = productSlice.actions;
+export const { setProducts, setError, filterProducts, resetFilter, setLoading } = productSlice.actions;
 
 export default productSlice.reducer;
