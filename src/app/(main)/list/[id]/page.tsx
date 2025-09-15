@@ -5,6 +5,7 @@ import { fetchProductByIdServer } from '@/lib/api'
 import Empty from '@/components/layouts/Empty'
 import ProductItem from '@/components/ProductItem'
 import { PAGE } from '@/config/page.config'
+import { headers } from 'next/headers'
 
 interface IParams {
   id: number
@@ -17,6 +18,9 @@ export default async function Single({ params }: { params: Promise<IParams> }) {
       return <Empty text="Invalid product ID" />;
     }
     
+    const headersList = await headers()
+    const referer = headersList.get('referer') || PAGE.LIST
+
     const { data, error } = await fetchProductByIdServer(id);
 
     if (error) return <Empty text={error} />
@@ -25,9 +29,9 @@ export default async function Single({ params }: { params: Promise<IParams> }) {
     return (
       <>
         <ProductItem data={data} />
-        <Link href={PAGE.LIST} className='flex gap-2 items-center text-blue-500'>
+        <Link href={referer} className='lg:w-1/2 mx-auto flex gap-2 items-center text-blue-500 hover:text-blue-600'>
           <AiOutlineArrowLeft />
-          <span>Back to list</span>
+          <span>Go Back</span>
         </Link>
       </> 
     )

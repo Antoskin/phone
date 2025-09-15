@@ -13,7 +13,7 @@ const bucketSlice = createSlice({
   initialState,
   reducers: {
     initCardsFromLocalStorage: (state) => {
-      state.cards = JSON.parse(localStorage.getItem("cards") || "[]");
+      state.cards = JSON.parse(localStorage.getItem("cards") || "[]") || [];
     },
     addCard: (state, action) => {
       state.cards = state.cards.includes(action.payload) ? state.cards : [...state.cards, action.payload];

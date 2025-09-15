@@ -12,6 +12,7 @@ import { PAGE } from '@/config/page.config';
 const ProductListClientContainer = () => {
 
   const { filteredProducts, loaded, error, loading } = useAppSelector((state: RootState) => state.product)
+  const { cards } = useAppSelector((state: RootState) => state.bucket)
 
   const router = useRouter()
   const dispatch = useAppDispatch();
@@ -32,7 +33,8 @@ const ProductListClientContainer = () => {
 
   return (
     <ProductListClient 
-      products={filteredProducts || []} 
+      products={filteredProducts} 
+      cards={cards}
       addToBucket={addToBucket}
       pathTo={pathTo} 
     />

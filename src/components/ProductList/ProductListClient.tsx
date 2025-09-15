@@ -1,13 +1,16 @@
+'use client'
+
 import { IProduct } from '@/lib/types'
 import Button from '../ui/Button'
 
 interface IProductListClientProps {
   products: IProduct[]
+  cards: number[]
   pathTo: (id: number) => void
   addToBucket: (id: number) => void
 }
 
-const ProductListClient = ({ products, pathTo, addToBucket }: IProductListClientProps) => {
+const ProductListClient = ({ products, pathTo, addToBucket, cards }: IProductListClientProps) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
       {products.map((product: IProduct) => (
@@ -26,9 +29,13 @@ const ProductListClient = ({ products, pathTo, addToBucket }: IProductListClient
               {product.body}
             </div>
           </div>
-          <Button type='button' onClick={() => addToBucket(product.id)}>
-            Add to Bucket
-          </Button>
+          {cards.includes(product.id) ? (
+            <p className='text-green-500'>In Bucket</p>
+          ) : (
+            <Button type='button' onClick={() => addToBucket(product.id)}>
+              Add to Bucket
+            </Button>
+          )}
         </div>
       ))}
     </div>
