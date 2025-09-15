@@ -6,6 +6,7 @@ import ProductListClient from './ProductListClient'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import Loader from '@/components/ui/Loader';
 import { setProducts, setError } from '@/store/slices/productSlice'
+import { addCard } from '@/store/slices/bucketSlice'
 import { IProduct } from '@/lib/types'
 import Empty from '../layouts/Empty'
 import { RootState } from '@/store'
@@ -33,6 +34,10 @@ const ProductListClientContainer = ({ products, error }: { products: IProduct[],
     router.push(PAGE.SINGLE(id))
   }
 
+  const addToBucket = (id: number) => {
+    dispatch(addCard(id))
+  }
+
   if (!isHydrated) return <Loader />
 
   if (error) return <Empty text={error} />
@@ -42,9 +47,11 @@ const ProductListClientContainer = ({ products, error }: { products: IProduct[],
   return (
     <ProductListClient 
       products={filteredProducts || []} 
+      addToBucket={addToBucket}
       pathTo={pathTo} 
       />
   )
 }
 
 export default ProductListClientContainer
+

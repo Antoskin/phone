@@ -1,7 +1,11 @@
-
-const Empty = ({ text }: { text?: string | null }) => {
+const Empty = ({ text, className }: { text?: string | null, className?: string }) => {
   return (
-    <div className="p-10 bg-amber-800 rounded-md text-center text-black text-2xl">{text || 'Empty'}</div>
+    <div className={`
+      ${className ? className : ''} 
+      p-10 bg-amber-800 rounded-md text-center text-black text-2xl`
+    }>
+      {text || 'Empty'}
+    </div>
   )
 }
 

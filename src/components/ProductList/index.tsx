@@ -1,3 +1,4 @@
-import ProductList from './ProductList.container';
+import ProductList from './ProductListClient.container';
+import withProductList from '../../containers/ProductList.container';
 
-export default ProductList;
+export default withProductList(ProductList);
