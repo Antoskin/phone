@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { fetchProductByIdServer } from '@/lib/api'
-import Empty from '@/components/layouts/Empty'
-import ProductItem from '@/components/ProductItem'
+import Empty from '@/shared/components/layouts/Empty'
+import ProductItem from '@/shared/components/ProductItem'
 import { PAGE } from '@/config/page.config'
 import { headers } from 'next/headers'
 
@@ -39,4 +39,14 @@ export default async function Single({ params }: { params: Promise<IParams> }) {
   catch (error) {
     notFound()
   }
+}
+
+async function ResponseSSG({ id }: { id: number }) {
+  const response = await fetchProductByIdServer(id);
+  const product = await response.json();
+  return (
+    <>
+      
+    </>
+  )
 }

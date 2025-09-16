@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import Header from "@/components/layouts/Header";
-import Menu from "@/components/layouts/Menu";
+import Header from "@/shared/components/layouts/Header";
+import Menu from "@/shared/components/layouts/Menu";
 import "./globals.css";
 const interSans = Inter({
   variable: "--font-geist-sans",

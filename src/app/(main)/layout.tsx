@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import type { Metadata } from "next";
-import ProductListContainer from "@/containers/ProductList.container";
+import ProductListContainer from "@/shared/containers/ProductList.container";
 
 export const metadata: Metadata = {
   title: "Lorem&ipsum 2",

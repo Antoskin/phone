@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductList from '@/components/ProductList'
-import FilterForm from '@/components/Forms/FilterForm'
+import ProductList from '@/shared/components/ProductList'
+import FilterForm from '@/shared/components/Forms/FilterForm'
 
 export default async function List() {
   return (

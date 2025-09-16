@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import ProductListClient from './ProductListClient'
 import { useAppDispatch, useAppSelector } from '@/store/hooks'
-import Loader from '@/components/ui/Loader';
+import Loader from '@/shared/components/ui/Loader';
 import { addCard } from '@/store/slices/bucketSlice'
 import Empty from '../layouts/Empty'
 import { RootState } from '@/store'

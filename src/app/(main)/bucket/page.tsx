@@ -3,13 +3,13 @@
 import { useMemo } from 'react'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa'
-import Empty from '@/components/layouts/Empty'
-import BucketList from '@/components/BucketList'
+import Empty from '@/shared/components/layouts/Empty'
+import BucketList from '@/shared/components/BucketList'
 import { useAppSelector, useAppDispatch } from '@/store/hooks'
 import { removeCard } from '@/store/slices/bucketSlice'
 import { IProduct } from '@/lib/types'
 import { PAGE } from '@/config/page.config'
-import Loader from '@/components/ui/Loader'
+import Loader from '@/shared/components/ui/Loader'
 import { useRouter } from 'next/navigation'
 
 export default function Bucket() {

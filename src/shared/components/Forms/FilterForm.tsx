@@ -1,15 +1,21 @@
 "use client"
 
-import React from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import Input from '@/components/ui/Input'
-import Button from '@/components/ui/Button'
+import Input from '@/shared/components/ui/Input'
+import Button from '@/shared/components/ui/Button'
 import { useAppDispatch } from '@/store/hooks'
 import { filterProducts, resetFilter } from '@/store/slices/productSlice'
 
 const FilterForm = () => {
   const { register, handleSubmit, reset } = useForm()
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetFilter())
+    }
+  }, [])
 
   const onSubmit = ({ userId }: any) => {
     userId ? dispatch(filterProducts(userId)) : dispatch(resetFilter())
