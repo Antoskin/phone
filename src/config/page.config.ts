@@ -1,5 +1,6 @@
 interface PageConfig {
     HOME: string;
+    LOGIN: string;
     NOT_FOUND: string;
     BUCKET: string;
     LIST: string;
@@ -8,6 +9,7 @@ interface PageConfig {
 
 const PAGE: PageConfig = {
     HOME: "/",
+    LOGIN: "/login",
     NOT_FOUND: "/not-found",
     BUCKET: "/bucket",
     LIST: "/list",

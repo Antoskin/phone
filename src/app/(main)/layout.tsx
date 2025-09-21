@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import type { Metadata } from "next";
-import ProductListContainer from "@/shared/containers/ProductList.container";
+import Header from "@/shared/components/layouts/Header";
 
 export const metadata: Metadata = {
   title: "Lorem&ipsum 2",
@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 export default function MainLayout({ children }: Readonly<{children: ReactNode }>) {
   
   return (
-    <ProductListContainer>
-      {children}
-    </ProductListContainer>
+    <>
+    <Header />
+    {children}
+    </>
   );
 }
