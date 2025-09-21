@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
-import { Moon, Sun } from 'lucide-react'
+import { Globe, Moon, Sun } from 'lucide-react'
 import { DropdownMenu, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuContent } from '@/shared/components/ui/dropdown-menu';
 
 
@@ -25,8 +25,12 @@ const ThemeToggle = () => {
       </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Theme</DropdownMenuLabel>
+        <DropdownMenuLabel>Theme 123</DropdownMenuLabel>
         <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => setTheme('system')}>
+          <Globe />
+          System
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('light')}>
           <Sun />
           Light

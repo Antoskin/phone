@@ -11,3 +11,4 @@ node_modules/
 .yarnrc.yml
 .vscode
 .tsconfig.tsbuildinfo
+/src/generated/prisma
