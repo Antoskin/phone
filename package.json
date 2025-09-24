@@ -18,7 +18,8 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "react-icons": "^5.5.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@prisma/client": "^6.16.2",
