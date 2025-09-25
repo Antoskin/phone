@@ -16,4 +16,4 @@ const Button = ({ type, children, onClick }: IButtonProps) => {
   )
 }
 
-export default Button
+export { Button }

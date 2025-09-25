@@ -22,4 +22,4 @@ const Input = ({ type, name, register, required, className, placeholder }: IInpu
   )
 }
 
-export default Input
+export { Input }

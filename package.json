@@ -9,6 +9,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@reduxjs/toolkit": "^2.9.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.544.0",
@@ -27,6 +28,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/ws": "^8.18.1",
+    "bufferutil": "^4.0.9",
     "prisma": "^6.16.2",
     "tailwindcss": "^4",
     "typescript": "^5"
