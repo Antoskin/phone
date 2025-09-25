@@ -10,7 +10,7 @@ export type ProductSchema = z.infer<typeof insertProductSchema>;
 
 export const loginSchema = z.object({
   username: z.string().min(3, "Username must be at least 3 characters"),
-  password: z.string().min(3, "Password must be at least 3 characters"),
+  password: z.string().min(3, "Password must be at least 300 characters"),
 });
 
 export type LoginSchema = z.infer<typeof loginSchema>;

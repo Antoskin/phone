@@ -1,16 +1,24 @@
-interface IInputProps {
-  type: string
-  name: string,
+import { HTMLInputTypeAttribute } from "react"
+import { FieldValues, Path, UseFormRegister } from "react-hook-form"
+
+interface IInputProps<T extends FieldValues> {
+  type: string | number
+  name: Path<T>
   className?: string
   placeholder?: string
-  register: (name: string, options?: any) => any
+  register: UseFormRegister<T>
   required?: boolean
+  label?: string
+  error?: string
 }
 
-const Input = ({ type, name, register, required, className, placeholder }: IInputProps) => {
+const Input = <T extends FieldValues> ({ type, name, register, required, className, placeholder, label, error }: IInputProps<T>) => {
   return (
+    <label htmlFor={name} className="block relative">
+      {label && <span className="absolute left-2 -top-4 -translate-y-1/2">{label}</span>}
     <input
-      type={type}
+      id={name}
+      type={type as HTMLInputTypeAttribute}
       {...register(name, { required })}
       className={`
         border border-gray-300 outline-none active:outline-none focus:outline-none rounded-md p-2 
@@ -19,6 +27,8 @@ const Input = ({ type, name, register, required, className, placeholder }: IInpu
       `}
       placeholder={placeholder}
     />
+    {error && <p className="text-red-500 text-sm absolute -bottom-5 right-0">{error}</p>}
+    </label>
   )
 }
 
