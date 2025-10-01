@@ -33,9 +33,9 @@ const LoginForm = () => {
     )
   }
 
-  const onSubmit = (data: LoginSchema) => {
-    console.log(data)
-  }
+  // const onSubmit = (data: LoginSchema) => {
+  //   console.log(data)
+  // }
 
   return (
     <div className='flex flex-col justify-center gap-4 lg:w-1/3 w-full mx-auto min-h-[60vh]'>
@@ -44,22 +44,22 @@ const LoginForm = () => {
       <form action={formAction} className='flex flex-col gap-10'>
         <Input 
           type="text" 
-          register={register} 
-          label="Username" 
-          name="username" 
+          // register={register} 
+          label="email" 
+          name="email" 
           className='w-full'
-          placeholder='Type your username'
-          error={errors.username?.message}
+          placeholder='Type your email'
+          // error={errors.username?.message}
         />
         <div className='relative w-full'>
           <Input 
             type={showPassword ? "text" : "password"} 
-            register={register} 
+            // register={register} 
             name="password" 
             className='w-full'
             label="Password"
             placeholder='Type your password'
-            error={errors.password?.message}
+            // error={errors.password?.message}
           />
           <Button 
             type="button" 
