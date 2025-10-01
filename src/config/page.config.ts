@@ -9,7 +9,7 @@ interface PageConfig {
 
 const PAGE: PageConfig = {
     HOME: "/",
-    LOGIN: "/login",
+    LOGIN: "/sign-in",
     NOT_FOUND: "/not-found",
     BUCKET: "/bucket",
     LIST: "/list",

@@ -1,12 +1,14 @@
+import { prisma } from './db/prisma';
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "./db/prisma";
+import { NextAuthConfig } from "next-auth";
+
 
 export const config = {
   pages: {
-    signIn: '/auth/signin',
-    error: '/auth/signin', // Error code passed in query string as ?error=
+    signIn: '/sign-in',
+    error: '/sign-in',
   },
   session: {
     strategy: 'jwt',
@@ -21,14 +23,19 @@ export const config = {
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        // Add your authentication logic here
-        return null;
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email as string }
+        });
+        if (!user) {
+          throw new Error("User not found");
+        }
+        return user;
       }
     }),
-  ] 
+  ]
 }
 
-export const { handlers, signIn, signOut, auth } = NextAuth(config);
+export const { handlers, signIn, signOut, auth } = NextAuth(config as NextAuthConfig);
 
 // export const GET = handlers.GET;
 // export const POST = handlers.POST;
