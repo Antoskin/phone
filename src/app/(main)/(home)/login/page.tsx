@@ -25,7 +25,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className='flex flex-col justify-center gap-4 lg:w-1/3 w-full mx-auto h-[80vh]'>
+    <div className='flex flex-col justify-center gap-4 lg:w-1/3 w-full mx-auto min-h-[60vh]'>
       <h1 className='text-2xl font-bold mb-10'>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-10'>
         <Input 
