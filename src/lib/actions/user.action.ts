@@ -2,6 +2,8 @@
 
 import { loginSchema } from "../validator";
 import { signIn, signOut } from "../../../auth";
+import { redirect } from "next/navigation";
+import { PAGE } from "@/config/page.config";
 //import { prisma } from "../../../db/prisma";
 
 export async function loginWithCredentials(prevState: unknown, formData: FormData) {
@@ -33,8 +35,4 @@ export async function loginWithCredentials(prevState: unknown, formData: FormDat
     return { success: false, message: "Invalid credentials" };
   }
 };
-
-export async function logout() {
-  await signOut();
-}
  

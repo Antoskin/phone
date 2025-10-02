@@ -1,10 +1,16 @@
-import { ShoppingCart, UserIcon } from "lucide-react";
+"use server"
+
+import { ShoppingCart, UserIcon, LogOut } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PAGE } from "@/config/page.config";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { auth } from "../../../../auth";
+import LogoutButton from "./LogoutButton";
 
-const Header = () => {
+const Header = async () => {
+  const session = await auth()
+
   return (
     <header className="py-10 flex justify-between items-center">
       <Link href="/">
@@ -15,9 +21,13 @@ const Header = () => {
         <Link href={PAGE.BUCKET} className="hover:opacity-50 transition-opacity">
           <ShoppingCart />
         </Link>
-        <Link href={PAGE.LOGIN} className="hover:opacity-50 transition-opacity">
-          <UserIcon />
-        </Link>
+        {session ? (
+          <LogoutButton />
+        ) : (
+          <Link href={PAGE.LOGIN} className="hover:opacity-50 transition-opacity">
+            <UserIcon />
+          </Link>
+        )}
       </div>
     </header>
   )
