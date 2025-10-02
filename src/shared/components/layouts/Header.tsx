@@ -1,6 +1,6 @@
 "use server"
 
-import { ShoppingCart, UserIcon, LogOut } from "lucide-react";
+import { ShoppingCart, UserIcon, UserPlus } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PAGE } from "@/config/page.config";
@@ -24,9 +24,14 @@ const Header = async () => {
         {session ? (
           <LogoutButton />
         ) : (
+          <>
           <Link href={PAGE.LOGIN} className="hover:opacity-50 transition-opacity">
             <UserIcon />
           </Link>
+          <Link href={PAGE.REGISTER} className="hover:opacity-50 transition-opacity">
+            <UserPlus />
+          </Link>
+          </>
         )}
       </div>
     </header>
