@@ -1,19 +1,20 @@
 "use client"
 
 import { LogOut } from "lucide-react";
-import { signOut } from "../../../../auth";
-import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { PAGE } from "@/config/page.config";
 
 const LogoutButton = () => {
 
   const handleLogout = async () => {
-    await signOut()
+    await signOut({ 
+      callbackUrl: PAGE.LOGIN,
+      redirect: true 
+    });
   }
   
   return (
     <button onClick={handleLogout}> <LogOut /> </button>
-    // <LogOut onClick={handleLogout} />
   )
 }
 
