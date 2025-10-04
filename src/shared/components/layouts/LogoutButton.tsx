@@ -14,7 +14,9 @@ const LogoutButton = () => {
   }
   
   return (
-    <button onClick={handleLogout}> <LogOut /> </button>
+    <button onClick={handleLogout} className="flex items-center gap-2 cursor-pointer hover:opacity-50 transition-opacity shrink-0 bg-blue-950 p-5 rounded-md"> 
+      <span className="capitalize">client logout</span> <LogOut /> 
+    </button>
   )
 }
 

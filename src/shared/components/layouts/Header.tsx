@@ -7,6 +7,7 @@ import { PAGE } from "@/config/page.config";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { auth } from "../../../../auth";
 import LogoutButton from "./LogoutButton";
+import LogoutServerButton from "./LogoutServerButton";
 
 const Header = async () => {
   const session = await auth()
@@ -22,7 +23,10 @@ const Header = async () => {
           <ShoppingCart />
         </Link>
         {session ? (
-          <LogoutButton />
+          <div className="flex items-center gap-2">
+            <LogoutButton />
+            <LogoutServerButton />
+          </div>
         ) : (
           <>
           <Link href={PAGE.LOGIN} className="hover:opacity-50 transition-opacity">

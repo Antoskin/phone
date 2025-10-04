@@ -36,3 +36,6 @@ export async function loginWithCredentials(prevState: unknown, formData: FormDat
   }
 };
  
+export async function logout() {
+  await signOut({ redirectTo: PAGE.LOGIN, redirect: true });
+}
