@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { ZodError, z } from "zod";
 
 export const insertProductSchema = z.object({
   slug: z.string().min(3, "Slug must be at least 3 characters"),
@@ -22,6 +22,18 @@ export const registerSchema = z.object({
   path: ["confirmPassword"],
   message: "Passwords do not match",
 });
+
+export async function formatError(error: any) {
+  console.log(error, 'error')
+  if (error.name === "ZodError") {
+     const fieldErrors = Object.keys(error.errors).map((field: any) => error.errors[field].message);
+     return fieldErrors.join(", ");
+  } else if (error.name === "PrismaClientKnownRequestError" && error.code === "P2002") {
+
+  } else {
+    
+  }
+}
 
 export type LoginSchema = z.infer<typeof loginSchema>;
 export type RegisterSchema = z.infer<typeof registerSchema>;

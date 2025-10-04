@@ -8,6 +8,7 @@ import { hash } from "bcrypt-ts-edge";
 import { prisma } from "../../../db/prisma";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 //import { prisma } from "../../../db/prisma";
+import { formatError } from "../validator";
 
 export async function loginWithCredentials(prevState: unknown, formData: FormData) {
   try {
@@ -82,12 +83,11 @@ export async function registerWithCredentials(prevState: unknown, formData: Form
 
     return { success: true, message: "Register successful" };
   } catch (error) {
-    console.error("Register error:", error);
     if (isRedirectError(error)) {
       throw error;
     }
 
-    return { success: false, message: "user was not created successfully" };
+    return { success: false, message: formatError(error) };
   }
 }
 
