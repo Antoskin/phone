@@ -1,4 +1,6 @@
-import React from 'react'
+'use server'
+
+import { Metadata } from 'next'
 import RegisterForm from '@/shared/components/Forms/RegisterForm'
 import { auth } from '../../../../auth'
 import { redirect } from 'next/navigation'
@@ -13,7 +15,7 @@ export default async function SignUp({ searchParams }: { searchParams: Promise<{
   if (session) {
     return redirect(callbackUrl || '/')
   }
-
+ 
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <RegisterForm />

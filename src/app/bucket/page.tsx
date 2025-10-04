@@ -27,6 +27,15 @@ export default function Bucket() {
     ))
   }, [products, bucket])
 
+  const removeFromBucket = (id: number) => {
+    console.log(id, 'id')
+  }
+
+  const pathTo = (id: number) => {
+    console.log(id, 'id')
+  }
+
+
   useEffect(() => {
     console.log(bucket, 'bucket')
   }, [bucket])
@@ -46,6 +55,6 @@ export default function Bucket() {
   }
 
   return (
-    <BucketList products={bucketProducts} />
+    <BucketList products={bucketProducts} removeFromBucket={removeFromBucket} pathTo={pathTo} />
   )
 }
