@@ -70,6 +70,7 @@ const LoginForm = () => {
         </div>
         <LiginButton />
       </form>
+      {state && !state.success && <p className='text-red-500'>{state.message}</p>}
     </div>
   )
 }

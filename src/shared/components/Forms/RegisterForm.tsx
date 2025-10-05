@@ -31,7 +31,7 @@ const RegisterForm = () => {
     console.log('Data from RegisterForm', data)
   }, [data])
 
-  const LiginButton = () => {
+  const LoginButton = () => {
     const { pending } = useFormStatus()
     return (
       <Button type="submit" disabled={pending}>{pending ? 'pending...' : 'Sign up'}</Button>
@@ -102,7 +102,7 @@ const RegisterForm = () => {
             />
         </div>
 
-        <LiginButton />
+        <LoginButton />
       </form>
       {data && !data.success && <p className='text-red-500'>{data.message}</p>}
     </div>

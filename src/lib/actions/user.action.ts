@@ -8,7 +8,7 @@ import { hash } from "bcrypt-ts-edge";
 import { prisma } from "../../../db/prisma";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 //import { prisma } from "../../../db/prisma";
-import { formatError } from "@/shared/utils";
+import { formatError, loginFormatError } from "@/shared/utils";
 
 export async function loginWithCredentials(prevState: unknown, formData: FormData) {
   try {
@@ -16,6 +16,16 @@ export async function loginWithCredentials(prevState: unknown, formData: FormDat
       email: formData.get("email"),
       password: formData.get("password"),
     });
+
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email: user.email,
+      },
+    });
+
+    if (!existingUser) {
+      return { success: false, message: "User not found" };
+    }
     
     const result = await signIn("credentials", {
       email: user.email,
@@ -30,13 +40,16 @@ export async function loginWithCredentials(prevState: unknown, formData: FormDat
     return { success: true, message: "Login successful" };
   } catch (error) {
     console.error("Login error:", error);
+    if (isRedirectError(error)) {
+      throw error;
+    }
     
     // Check if the error is a redirect error
-    if (error && typeof error === "object" && "cause" in error && error.cause === "NEXT_REDIRECT") {
-      throw error; // Re-throw redirect errors to let Next.js handle them
-    }
+    // if (error && typeof error === "object" && "cause" in error && error.cause === "NEXT_REDIRECT") {
+    //   throw error; // Re-throw redirect errors to let Next.js handle them
+    // }
      
-    return { success: false, message: "Invalid credentials" };
+    return { success: false, message: loginFormatError(error) };
   }
 };
 
