@@ -8,7 +8,7 @@ import { hash } from "bcrypt-ts-edge";
 import { prisma } from "../../../db/prisma";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 //import { prisma } from "../../../db/prisma";
-import { formatError } from "../validator";
+import { formatError } from "@/shared/utils";
 
 export async function loginWithCredentials(prevState: unknown, formData: FormData) {
   try {

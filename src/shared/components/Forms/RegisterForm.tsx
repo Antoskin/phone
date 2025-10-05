@@ -27,6 +27,10 @@ const RegisterForm = () => {
     if (data.success) router.refresh()
   }, [data?.success])
 
+  useEffect(() => {
+    console.log('Data from RegisterForm', data)
+  }, [data])
+
   const LiginButton = () => {
     const { pending } = useFormStatus()
     return (
@@ -54,7 +58,6 @@ const RegisterForm = () => {
   return (
     <div className='flex flex-col justify-center gap-4 lg:w-1/3 w-full mx-auto min-h-[60vh]'>
       <h1 className='text-2xl font-bold mb-10'>Registration Form</h1>
-      {data && !data.success && <p className='text-red-500'>{data.message}</p>}
       <form action={formAction} className='flex flex-col gap-10'>
         <input type="hidden" name="callbackUrl" value={callbackUrl} />
         <Input 
@@ -101,6 +104,7 @@ const RegisterForm = () => {
 
         <LiginButton />
       </form>
+      {data && !data.success && <p className='text-red-500'>{data.message}</p>}
     </div>
   )
 }
