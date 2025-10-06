@@ -4,6 +4,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthConfig } from "next-auth";
 import { compareSync } from "bcrypt-ts-edge";
+import { JWT } from "next-auth/jwt";
 
 
 export const config = {
@@ -16,6 +17,35 @@ export const config = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
+  },
+  callbacks: {
+    async session({ session, token }: any) {
+      session.user.id = token.sub;
+      session.user.role = token.role;
+      session.user.name = token.name;
+
+      if (token.trigger === 'update') {
+        session.user.name = token.name;
+      }
+
+      return session;
+    },
+    // async jwt({ token, user }: any): Promise<JWT> {
+    //   if (user) {
+    //     token.role = user.role;
+    //   }
+  
+    //   if (user.name = 'NO_NAME') {
+    //     //token.name = user.email!.split('@')[0];
+
+    //     // await prisma.user.update({
+    //     //   where: { id: user.id },
+    //     //   data: { name: token.name }
+    //     // });
+    //   }
+
+    //   return token;
+    // },
   },
   providers: [
     CredentialsProvider({
@@ -50,7 +80,7 @@ export const config = {
       }
     }),
   ]
-}
+} satisfies NextAuthConfig;
 
 export const { handlers, signIn, signOut, auth } = NextAuth(config as NextAuthConfig);
 

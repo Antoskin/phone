@@ -6,6 +6,7 @@ interface PageConfig {
     BUCKET: string;
     LIST: string;
     SINGLE: (id: number) => string;
+    PROFILE: string;
 }
 
 const PAGE: PageConfig = {
@@ -16,6 +17,7 @@ const PAGE: PageConfig = {
     BUCKET: "/bucket",
     LIST: "/list",
     SINGLE: (id: number) => `/list/${id}`,
+    PROFILE: "/profile",
 }
 
 export { PAGE };

@@ -1,4 +1,4 @@
-import { ZodError, z } from "zod";
+import { z } from "zod";
 
 export const insertProductSchema = z.object({
   slug: z.string().min(3, "Slug must be at least 3 characters"),

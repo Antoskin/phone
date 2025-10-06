@@ -4,7 +4,7 @@ import ClientDataLoader from '@/shared/components/ClientDataLoader';
 import { IApiResponse } from '@/lib/api';
 import { IProduct } from '@/lib/types';
 
-const ProductListContainer = async ({ children }: { children: React.ReactNode }) => {
+const ProductListContainer = async ({ children }: { children: ReactNode }) => {
   const { data, error }: IApiResponse<IProduct[]> = await fetchProductsServer()
 
   return (
